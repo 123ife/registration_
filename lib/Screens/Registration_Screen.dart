@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:registration_/Screens/Details_Screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   _RegistrationScreenState createState() => _RegistrationScreenState();
@@ -44,23 +45,33 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               child: Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: isRegistered ? Colors.green: Colors.blue,
+                  color: isRegistered ? Colors.green : Colors.blue,
                   borderRadius: BorderRadius.circular(10),
-
-                  
-
-                
                 ),
                 child: Text(
-                  isRegistered?"Registration Successful":"Register me",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                  )
-                   ),
-                ), 
-
-            )
+                    isRegistered ? "Registration Successful" : "Register me",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                    )),
+              ),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            if (isRegistered)
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DetailsScreen(
+                                  firstname: firstNameController.text,
+                                  lastname: lastNameController.text,
+                                  email: emailController.text,
+                                )));
+                  },
+                  child: const Text("view registration details"))
           ],
         ),
       ),
